@@ -3,7 +3,7 @@
 
 import os
 import time
-from sd_to_myriad import analyze_image  # ✅ matches expected filename
+from sdto_myriad import analyze_image  # ✅ matches expected filename
 from myriad_sd_bridge import buildsdprompt, exporttosd
 from engines import engine_ego, engine_echo, engine_drift, engine_form
 from myriad_sd_mock import simulate_sd_render
