@@ -1,4 +1,4 @@
-# myriad_sd_bridge.py
+# myriadsdbridge.py
 # Convert Myriad sim output → Stable Diffusion prompt and export
 
 import os
