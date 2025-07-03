@@ -3,7 +3,7 @@
 
 import os
 import time
-from sd_to_myriad import analyze_image
+from sd_to_myriad import analyze_image  # ✅ matches expected filename
 from myriad_sd_bridge import buildsdprompt, exporttosd
 from engines import engine_ego, engine_echo, engine_drift, engine_form
 from myriad_sd_mock import simulate_sd_render
@@ -26,7 +26,7 @@ def loop_once(input_image_path, loop_id="001"):
     print(f"[Loop {loop_id}] Starting from image: {input_image_path}")
     inferred = analyze_image(input_image_path)
     sim_data = run_sim(inferred)
-    prompt = build_sd_prompt(sim_data, emotion=inferred["emotion"])
+    prompt = buildsdprompt(sim_data, emotion=inferred["emotion"])
     simulate_sd_render(prompt, output_path=f"outputs/frame_{loop_id}.png")
     print(f"[Loop {loop_id}] Complete.")
     return prompt
