@@ -15,3 +15,16 @@ Built to evoke non-ordinary states through image loops, emotional seeding, and m
 
 ```bash
 python dreamloopbuilder.py --image path/to/start.png --cycles 3
+---
+
+### 📄 `.gitignore`
+
+```gitignore
+__pycache__/
+*.pyc
+*.zip
+outputs/
+ingest/
+emotions/
+sd_prompts/
+.env
