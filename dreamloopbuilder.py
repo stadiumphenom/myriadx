@@ -27,7 +27,7 @@ def loop_once(input_image_path, loop_id="001"):
     inferred = analyze_image(input_image_path)
     sim_data = run_sim(inferred)
     prompt = build_sd_prompt(sim_data, emotion=inferred["emotion"])
-    export_to_sd(prompt, output_dir="sd_prompts")
+    simulate_sd_render(prompt, output_path=f"outputs/frame_{loop_id}.png")
     print(f"[Loop {loop_id}] Complete.")
     return prompt
 
