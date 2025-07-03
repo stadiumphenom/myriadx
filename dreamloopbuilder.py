@@ -3,10 +3,10 @@
 
 import os
 import time
-from sdtomyriad1 import analyze_image
-from myriadsdbridge import buildsdprompt, exporttosd
-from engines import engineego, engineecho, enginedrift, engineform
-from myriadsdmock import simulate_sd_render
+from sd_to_myriad1 import analyze_image
+from myriad_sd_bridge import buildsdprompt, exporttosd
+from engines import engine_ego, engine_echo, engine_drift, engine_form
+from myriad_sd_mock import simulate_sd_render
 
 ENGINE_MAP = {
     "ego-loss": engine_ego.MyriadEgoEngine,
