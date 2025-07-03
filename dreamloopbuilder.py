@@ -5,7 +5,7 @@ import os
 import time
 from analyzer import analyze_image
 from myriadsdbridge import build_sd_prompt, export_to_sd
-from engines import engine_ego, engine_echo, engine_drift, engine_form
+from engines import engine_ego.py, engine_echo.py, engine_drift.py, engine_form.py
 from myriad_sd_mock import simulate_sd_render
 
 ENGINE_MAP = {
