@@ -3,7 +3,7 @@
 
 import os
 import time
-from sdtomyriad import analyzeimage
+from sdtomyriad import analyze_image
 from myriadsdbridge import buildsdprompt, exporttosd
 from engines import engineego, engineecho, enginedrift, engineform
 from myriadsdmock import simulate_sd_render
