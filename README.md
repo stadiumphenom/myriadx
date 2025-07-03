@@ -15,3 +15,7 @@ Built to evoke non-ordinary states through image loops, emotional seeding, and m
 
 ```bash
 python dreamloopbuilder.py --image path/to/start.png --cycles 3
+
+---
+
+Paste this into your `README.md` and commit. Let me know when done — we can run Codespaces or lock in the next step.
