@@ -1,4 +1,4 @@
-# engineego.py
+# engine_ego.py
 from engines.enginecore import MyriadBaseEngine
 
 class MyriadEgoEngine(MyriadBaseEngine):
