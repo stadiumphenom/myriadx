@@ -1,4 +1,4 @@
-# sdto_myriad.py
+# analyzer.py
 # Analyze image and convert to emotional simulation input
 
 from PIL import Image
