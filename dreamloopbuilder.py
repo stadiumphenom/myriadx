@@ -5,20 +5,20 @@ import os
 import time
 from analyzer import analyze_image
 from myriadsdbridge import build_sd_prompt, export_to_sd
-from engines import engine_ego.py, engine_echo.py, engine_drift.py, engine_form.py
-from myriad_sd_mock import simulate_sd_render
+from engines import engineego, engineecho, enginedrift, engineform
+from myriadsdmock import simulate_sd_render
 
 ENGINE_MAP = {
-    "ego-loss": engine_ego.MyriadEgoEngine,
-    "ghost-calm": engine_echo.MyriadEchoEngine,
-    "chaos": engine_drift.MyriadDriftEngine,
-    "structured": engine_form.MyriadFormEngine
+    "ego-loss": engineego.MyriadEgoEngine,
+    "ghost-calm": engineecho.MyriadEchoEngine,
+    "chaos": enginedrift.MyriadDriftEngine,
+    "structured": engineform.MyriadFormEngine
 }
 
 def run_sim(params, sim_count=10000):
     emotion_key = params.get("emotion", "ego-loss")
     drift = params.get("entropy", 0.1)
-    EngineClass = ENGINE_MAP.get(emotion_key, engine_ego.MyriadEgoEngine)
+    EngineClass = ENGINE_MAP.get(emotion_key, engineego.MyriadEgoEngine)
     engine = EngineClass(emotion=emotion_key, sim_count=sim_count, drift_factor=drift)
     return engine.generate_frame_data()
 
@@ -26,7 +26,7 @@ def loop_once(input_image_path, loop_id="001"):
     print(f"[Loop {loop_id}] Starting from image: {input_image_path}")
     inferred = analyze_image(input_image_path)
     sim_data = run_sim(inferred)
-    prompt = buildsdprompt(sim_data, emotion=inferred["emotion"])
+    prompt = build_sd_prompt(sim_data, emotion=inferred["emotion"])
     simulate_sd_render(prompt, output_path=f"outputs/frame_{loop_id}.png")
     print(f"[Loop {loop_id}] Complete.")
     return prompt
