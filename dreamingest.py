@@ -1,4 +1,4 @@
-# dream_ingest.py
+# dreamingest.py
 # Module to download and prepare media input for simulation
 
 import os
