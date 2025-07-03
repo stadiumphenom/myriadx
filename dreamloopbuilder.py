@@ -1,11 +1,11 @@
-# dream_loop_builder.py
+# dreamloopbuilder.py
 # Full Myriad ⇄ Stable Diffusion recursive loop generator
 
 import os
 import time
-from sd_to_myriad import analyze_image
-from myriad_sd_bridge import build_sd_prompt, export_to_sd
-from engines import engine_ego, engine_echo, engine_drift, engine_form
+from sdtomyriad import analyzeimage
+from myriadsdbridge import buildsdprompt, exporttosd
+from engines import engineego, engineecho, enginedrift, engineform
 
 ENGINE_MAP = {
     "ego-loss": engine_ego.MyriadEgoEngine,
