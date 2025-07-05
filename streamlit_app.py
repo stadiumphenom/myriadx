@@ -8,7 +8,7 @@ import os
 
 # Stability AI API Key from environment variable
 API_KEY = os.getenv("sk-Vd5S5SG1mZVlyJjySkhVW5ZcbarHfKEAtITgj5gQszKQO5aG")
-API_URL = "https://api.stability.ai/v2beta/stable-image/generate/core"
+API_URL = "https://api.stability.ai/v2beta/stable-image/generate/sd3"
 
 st.set_page_config(page_title="Dreamloop Lite", layout="centered")
 st.title("🎨 Dreamloop Lite - Powered by Stability AI")
