@@ -20,34 +20,15 @@ else:
     uploaded_file = st.file_uploader("(Optional) Upload an image to guide the generation", type=["jpg", "jpeg", "png"])
 
     if st.button("Generate"):
-        if not prompt:
-            st.warning("Please enter a prompt.")
-        else:
-            with st.spinner("Generating image..."):
-                headers = {
-                    "Authorization": f"Bearer {API_KEY}",
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
-                }
-
-                payload = {
-                    "prompt": prompt,
-                    "output_format": "png"
-                }
-
-                if uploaded_file:
-                    image_bytes = uploaded_file.read()
-                    b64_image = base64.b64encode(image_bytes).decode("utf-8")
-                    payload["init_image"] = b64_image
-                    payload["mode"] = "image-to-image"
-
-                response = requests.post(API_URL, headers=headers, json=payload)
-
-                if response.status_code == 200:
-                    output = response.json()
-                    image_data = base64.b64decode(output["image"])
-                    result_img = Image.open(BytesIO(image_data))
-                    st.image(result_img, caption="Generated Image")
-                    st.download_button("Download Image", data=image_data, file_name="dreamloop_output.png")
-                else:
-                    st.error(f"Generation failed: {response.text}")
+    if not prompt:
+        st.warning("Please enter a prompt.")
+    else:
+        with st.spinner("Generating image..."):
+            try:
+                image_bytes = uploaded_file.read() if uploaded_file else None
+                result = dreamloop_generate(prompt, image_bytes)
+                img = Image.open(BytesIO(result))
+                st.image(img)
+                st.download_button("Download", data=result, file_name="dreamloop.png")
+            except Exception as e:
+                st.error(f"Error: {e}")
