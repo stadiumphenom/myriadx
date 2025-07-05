@@ -1,3 +1,4 @@
+from stabilitydreamloop import dreamloop_generate
 import streamlit as st
 import requests
 import base64
