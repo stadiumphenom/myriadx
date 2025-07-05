@@ -1,13 +1,15 @@
-import os
-import base64
+# stabilitydreamloop.py
 import requests
+import base64
+from io import BytesIO
+import os
 
-API_KEY = os.getenv("STABILITY_API_KEY")
-API_URL = "https://api.stability.ai/v2beta/stable-image/generate/core"
+def dreamloop_generate(prompt, image_bytes=None, use_sdxl=True):
+    API_KEY = os.getenv("STABILITY_API_KEY")
+    API_URL = "https://api.stability.ai/v2beta/stable-image/generate/core"
 
-def dreamloop_generate(prompt: str, init_image_bytes: bytes = None):
     if not API_KEY:
-        raise ValueError("Missing STABILITY_API_KEY in environment variables.")
+        raise ValueError("Stability API key not found in environment.")
 
     headers = {
         "Authorization": f"Bearer {API_KEY}",
@@ -17,17 +19,18 @@ def dreamloop_generate(prompt: str, init_image_bytes: bytes = None):
 
     payload = {
         "prompt": prompt,
-        "output_format": "png"
+        "output_format": "png",
+        "model": "stable-diffusion-xl-beta" if use_sdxl else "stable-diffusion-v1-5"
     }
 
-    if init_image_bytes:
-        b64_image = base64.b64encode(init_image_bytes).decode("utf-8")
-        payload["init_image"] = b64_image
+    if image_bytes:
+        payload["init_image"] = base64.b64encode(image_bytes).decode("utf-8")
         payload["mode"] = "image-to-image"
 
     response = requests.post(API_URL, headers=headers, json=payload)
 
     if response.status_code == 200:
-        return base64.b64decode(response.json()["image"])
+        output = response.json()
+        return base64.b64decode(output["image"])
     else:
-        raise RuntimeError(f"Stability API failed: {response.text}")
+        raise RuntimeError(f"Generation failed: {response.text}")
