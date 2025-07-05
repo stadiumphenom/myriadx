@@ -5,7 +5,6 @@ from PIL import Image
 from io import BytesIO
 import os
 from dotenv import load_dotenv
-
 load_dotenv()  # Load .env file containing STABILITY_API_KEY
 
 st.set_page_config(page_title="Dreamloop Lite", layout="centered")
