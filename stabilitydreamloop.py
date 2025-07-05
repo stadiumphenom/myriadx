@@ -5,7 +5,7 @@ from io import BytesIO
 import os
 
 def dreamloop_generate(prompt, image_bytes=None, use_sdxl=True):
-    API_KEY = os.getenv("STABILITY_API_KEY")
+    API_KEY = os.getenv("key")
     API_URL = "https://api.stability.ai/v2beta/stable-image/generate/core"
 
     if not API_KEY:
